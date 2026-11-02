@@ -1,0 +1,417 @@
+/* Reference-aligned RCPET IMRD login and student dashboard polish */
+:root{--rcpet-navy:#062B60;--rcpet-blue:#075CCB;--rcpet-bright:#0878F9;--rcpet-gold:#FFC928;}
+.site-header.login-header{height:80px;min-height:80px;padding:0 30px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(100deg,#05265b,#0b4a91);border-bottom:2px solid #e8bc35;box-sizing:border-box}
+.login-header:before{content:"";display:block;width:230px;height:54px;background:url('/assets/rcpet-square-logo.png') left center/52px 52px no-repeat;}
+.login-header:after{content:"RCPET IMRD  |  SHIRPUR";position:absolute;left:91px;top:25px;color:#fff;font-weight:800;letter-spacing:.02em;font-size:17px;pointer-events:none}
+.login-header .profile-menu{margin-left:auto;position:relative;z-index:30}.login-header .profile-button{border:1px solid #ffffff66;background:#082f6c;color:#fff;border-radius:28px;padding:12px 20px;font-weight:700;min-width:145px;box-shadow:0 4px 14px #001b3b33}
+.login-header .profile-dropdown{right:0;top:calc(100% + 12px);width:230px;padding:8px;border-radius:14px;background:#fff;box-shadow:0 14px 38px #061d3b30;border:1px solid #dbe5f2}.login-header .profile-dropdown button{width:100%;text-align:left;padding:13px 12px;border-radius:9px;color:#092c5d;font-weight:700}.login-header .profile-dropdown button:hover{background:#edf4ff}
+body:not(.portal-active) .site-header+.wrap{width:100%;max-width:none;margin:0;padding:0 42px;box-sizing:border-box}
+body:not(.portal-active) .login-information>*{position:relative;z-index:1}body:not(.portal-active) .login-information .eyebrow{color:var(--rcpet-gold);font-weight:900;letter-spacing:.2em}
+body:not(.portal-active) .login-information h1{font-size:clamp(2.5rem,4vw,4.1rem);line-height:1.02;max-width:11ch;margin:10px 0 16px}body:not(.portal-active) .animated-phrase{color:var(--rcpet-gold);min-height:0}
+body:not(.portal-active) .login-information .info-copy{font-size:clamp(1rem,1.25vw,1.12rem);line-height:1.65;max-width:47ch}
+body:not(.portal-active) .feature-list{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:28px}
+body:not(.portal-active) .feature-item{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:10px;min-height:155px;padding:14px 12px;border-radius:13px;background:#062754a8;border:1px solid #42a3ff48;backdrop-filter:blur(8px)}
+body:not(.portal-active) .feature-item>span{width:46px;height:46px;flex-basis:46px;background:#0b4385;color:var(--rcpet-gold);border:1px solid #ffffff24;font-size:20px}
+body:not(.portal-active) .feature-item strong{font-size:14px;color:#fff}body:not(.portal-active) .feature-item small{font-size:12px;line-height:1.45;color:#e2ecfa}
+body:not(.portal-active) .home-layout>#home{grid-column:2;grid-row:1;align-self:center;justify-self:center;width:100%;max-width:560px;margin:26px;padding:clamp(28px,3vw,46px);box-sizing:border-box;border:0;border-top:4px solid var(--rcpet-gold);border-radius:24px;background:#fff;box-shadow:0 20px 60px #082d5b22}
+.login-institution{display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;margin-bottom:18px}.login-institution img{width:78px;height:78px;object-fit:contain;border-radius:16px;background:#fff;padding:6px;border:1px solid #e2eaf4;box-shadow:0 6px 20px #092b5b0d}.login-institution strong{font-size:19px;color:#082d5a}
+body:not(.portal-active) #home>.eyebrow{text-align:center;color:#0876c8;letter-spacing:.2em;font-size:.72rem;font-weight:900}body:not(.portal-active) #home>h1{text-align:left;color:#092a52;font-size:clamp(2rem,2.8vw,2.8rem);line-height:1.08;letter-spacing:-.04em;margin:12px 0}body:not(.portal-active) #home>.muted{line-height:1.6}
+#studentLoginForm label{display:block;margin:14px 0 7px;font-weight:750;color:#102b50}#studentLoginForm input{width:100%;box-sizing:border-box;min-height:51px;padding:13px 44px 13px 15px;border:1px solid #d6e1ef;background:#f7faff;border-radius:11px;font-size:15px}
+.password-field{position:relative;display:block}.password-toggle{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:30px;height:30px;display:grid;place-items:center;border:0;background:transparent;color:#526985;cursor:pointer;padding:0}.password-toggle svg{width:19px;height:19px;display:block}
+#studentLoginForm .primary{width:100%;min-height:53px;margin-top:10px;border-radius:11px;background:linear-gradient(100deg,#0868d9,#1299ec);box-shadow:0 9px 20px #0879df2b;font-weight:800}
+.login-brand-footer{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:25px;padding-top:18px;border-top:1px solid #dce6f2;color:#0b2d5b}.login-brand-mark{width:44px;height:44px;border:2px solid #0a3672;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:17px}.login-brand-footer strong,.login-brand-footer small{display:block}.login-brand-footer strong{font-size:17px}.login-brand-footer small{font-size:12px;color:#62748e;margin-top:3px}
+/* dashboard desktop composition */
+body.portal-active{background:#eef3fa!important}.student-portal{background:#eef3fa!important}.student-portal-top{height:80px;background:linear-gradient(100deg,#05265b,#0b4a91);border:0;border-radius:0;padding:10px 22px;gap:16px;box-shadow:0 4px 18px #092d5b12}.student-portal-top .hamburger-button{flex:0 0 48px;width:48px;height:48px;border:1px solid #ffffff30;border-radius:13px;background:#ffffff12;color:#fff}.student-portal-top .portal-search-wrap{height:46px;max-width:720px;flex:1 1 420px;border:1px solid #ffffff3d;border-radius:14px;background:#ffffff16;padding:0 15px}.student-portal-top .portal-search-wrap input{color:#fff;background:transparent}.student-portal-top .portal-search-wrap input::placeholder{color:#d4e4fa}.student-portal-top .portal-search-wrap kbd{background:#ffffff20;color:#fff;border-color:#ffffff2a}.student-portal-top .portal-icon-button{color:#fff;background:transparent;border:1px solid #ffffff30;border-radius:13px;width:48px;height:48px}.student-portal-top .portal-user-button{color:#fff;gap:11px}.student-portal-top .portal-user-avatar{width:46px;height:46px;flex-basis:46px;font-size:24px}.student-portal-top .portal-user-copy strong{color:#fff}.student-portal-top .portal-user-copy small{color:#d7e5f9}
+.student-portal-body{min-height:calc(100vh - 80px)}.student-sidebar{width:270px;flex:0 0 270px;background:linear-gradient(180deg,#06234e,#07366d);padding:18px 14px;border-right:1px solid #164879;box-sizing:border-box}.student-brand{padding:5px 7px 20px;margin-bottom:16px;border-bottom:1px solid #ffffff20}.student-brand img{width:52px;height:52px;object-fit:contain;background:#fff;border-radius:12px;padding:4px}.student-brand strong{color:#fff}.student-brand small{color:#cbdcf5}.student-sidebar-heading{color:#a9c5e8;letter-spacing:.1em}.student-nav{min-height:48px;margin:4px 0;padding:11px 14px;border-radius:12px;color:#eaf2ff;font-weight:650;gap:14px}.student-nav.active{background:linear-gradient(100deg,#0758d6,#1c68db);box-shadow:0 7px 16px #001c4b30;color:#fff}.student-nav:hover{background:#ffffff16}.student-portal-content{max-width:none;width:auto;padding:22px 24px;flex:1;min-width:0}.student-page-heading{margin:0 0 18px}.student-page-heading h1{font-size:34px;letter-spacing:-.035em;color:#082a56}
+.campus-welcome{position:relative;min-height:300px;padding:clamp(25px,3vw,40px);border-radius:16px;overflow:hidden;background-color:#05295b;background-image:url('/assets/rcpet-imrd-college-gardens.png');background-position:center 47%;background-size:cover;background-repeat:no-repeat;box-shadow:0 12px 28px #092c5b20}.campus-welcome:before{background:linear-gradient(90deg,rgba(2,25,66,.96) 0%,rgba(3,39,91,.84) 35%,rgba(5,44,97,.32) 65%,rgba(5,29,64,.02) 100%)}.campus-welcome-copy{max-width:68%;position:relative;z-index:2}.campus-welcome .eyebrow{color:#ffcf36;letter-spacing:.22em;font-weight:900}.campus-welcome h2{font-size:clamp(27px,2.5vw,38px);line-height:1.15;margin:15px 0 10px;color:#fff}.campus-welcome h2 span{color:#ffcf36}.campus-welcome p{font-size:16px}.campus-welcome .welcome-highlights span{display:inline-flex;align-items:center;min-height:43px;border-radius:13px;background:#062d61bd;border:1px solid #62a9ff4d;padding:10px 13px;color:#fff}.legacy-dashboard-photo{display:none!important}
+.student-summary-grid{gap:14px;margin:16px 0}.student-summary-grid article{min-height:110px;padding:22px;border-radius:17px;border:1px solid #e0e9f5;box-shadow:0 7px 22px #102e4b08}.student-summary-grid article:nth-child(1){background:#fff}.student-summary-grid article:nth-child(2){background:#fbfffd}.student-summary-grid article:nth-child(3){background:#fffdf8}.student-summary-grid span{font-size:11px;color:#57739a;letter-spacing:.07em}.student-summary-grid strong{font-size:31px;color:#092c5a}.student-dashboard-lower{grid-template-columns:minmax(0,1.45fr) minmax(300px,.85fr);gap:16px}.student-content-card{border:1px solid #e0e9f5;border-radius:17px;box-shadow:0 7px 22px #102e4b08;padding:20px;background:#fff}.student-card-heading{padding-bottom:14px;border-bottom:1px solid #e6edf6}.student-card-heading h2{font-size:19px;color:#092c5a}.dashboard-view-all{color:#0766db;font-weight:800}.student-data-card{border-bottom:1px solid #e8eef6;padding:17px 8px}.student-start-test{border-radius:11px;background:linear-gradient(100deg,#0868d9,#1299ec);box-shadow:0 6px 14px #0879df20}
+@media(max-width:1100px){body:not(.portal-active) .feature-list{grid-template-columns:repeat(2,minmax(0,1fr))}.student-sidebar{width:245px;flex-basis:245px}.student-dashboard-lower{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:850px){.site-header+.wrap{padding:0 12px}body:not(.portal-active) .home-layout{display:flex;flex-direction:column;min-height:0;gap:12px}body:not(.portal-active) .login-information{min-height:0;order:1;padding:28px 22px;background-position:center}.body:not(.portal-active) .login-information h1{font-size:2.4rem}body:not(.portal-active) .home-layout>#home{order:2;margin:0 auto 20px;max-width:620px;width:100%}.login-header:before{width:60px}.login-header:after{left:76px;top:25px;font-size:14px}.student-portal-top{height:auto;min-height:66px;flex-wrap:wrap}.student-portal-top>.portal-search-wrap{order:5;flex:1 1 100%;max-width:none}.student-sidebar{position:fixed;top:0;bottom:0;left:0;z-index:40;transform:translateX(-105%)}.student-sidebar.open{transform:translateX(0)}.student-portal-content{padding:16px 12px}.campus-welcome{min-height:260px;background-position:center}.campus-welcome-copy{max-width:100%}.student-summary-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.login-header{height:66px;min-height:66px;padding:0 12px}.login-header:before{height:45px;background-size:42px 42px;width:48px}.login-header:after{left:61px;top:21px;font-size:12px}.login-header .profile-button{min-width:110px;padding:10px 13px}.site-header+.wrap{padding:0 9px}.body:not(.portal-active) .login-information{padding:24px 16px}body:not(.portal-active) .login-information h1{font-size:2.35rem}body:not(.portal-active) .feature-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}body:not(.portal-active) .feature-item{min-height:130px;padding:10px}body:not(.portal-active) .home-layout>#home{padding:24px 18px}.student-portal-top{padding:9px;gap:8px}.student-portal-top>.portal-user-menu{max-width:calc(100% - 108px)}.student-portal-top .portal-user-copy small{max-width:110px}.student-summary-grid{grid-template-columns:1fr}.student-summary-grid article{min-height:76px;display:flex;align-items:center;justify-content:space-between;padding:15px}.student-summary-grid strong{margin:0}.campus-welcome{min-height:280px;padding:24px 18px}.campus-welcome h2{font-size:25px}.campus-welcome .welcome-highlights{gap:6px}.campus-welcome .welcome-highlights span{font-size:10px;padding:8px}.student-dashboard-lower{grid-template-columns:minmax(0,1fr)}.student-content-card{padding:14px}}
+.login-header:before,.login-header:after{content:none;display:none}
+.login-brand-lockup{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;min-width:0}
+.login-brand-lockup img{width:48px;height:48px;object-fit:contain}
+.login-brand-lockup span,.login-brand-lockup strong,.login-brand-lockup small{display:block}
+.login-brand-lockup strong{font-size:15px;letter-spacing:.04em}
+.login-brand-lockup small{margin-top:2px;color:#d4e4fa;font-size:11px;letter-spacing:.1em}
+.login-brand-footer img{width:44px;height:44px;object-fit:contain}
+.login-institution small{color:#7486a2;font-size:10px;font-weight:850;letter-spacing:.22em}
+.login-tagline{margin:0 0 12px;color:#fff;font-size:clamp(1.25rem,2vw,1.7rem)}
+body:not(.portal-active) .login-information h1{max-width:13ch;line-height:1.04}
+body:not(.portal-active) .login-information h1 .animated-phrase{display:inline-block}
+body:not(.portal-active) .login-information .feature-item>span{font-size:21px}
+body.portal-active,.student-portal{background:#F4F7FC!important}
+.student-sidebar{display:flex;flex-direction:column;min-height:calc(100vh - 80px)}
+.student-sidebar-student-card{display:flex;align-items:center;gap:12px;margin:24px 0 0;padding:13px;border:1px solid #ffffff22;border-radius:13px;background:#ffffff0b}
+.student-sidebar-student-card>span{width:40px;height:40px;display:grid;place-items:center;flex:0 0 40px;border-radius:11px;background:#075CCB;color:#fff;font-size:20px}
+.student-sidebar-student-card div{display:flex;flex-direction:column;min-width:0;gap:3px}
+.student-sidebar-student-card strong{color:#fff;font-size:12px}
+.student-sidebar-student-card small{color:#cbdcf5;font-size:10px;overflow-wrap:anywhere}
+.student-nav.active{background:linear-gradient(100deg,#075CCB,#0878F9)}
+.student-view#studentViewDashboard>.student-page-heading{display:none}
+.student-welcome-card.campus-welcome{background-color:#05295b!important;background-image:linear-gradient(90deg,rgba(2,25,66,.96) 0%,rgba(3,39,91,.84) 35%,rgba(5,44,97,.32) 65%,rgba(5,29,64,.08) 100%),url('/assets/rcpet-imrd-college-gardens.png')!important;background-position:50% 50%,50% 47%!important;background-size:cover,cover!important;background-repeat:no-repeat,no-repeat!important}
+.campus-welcome h2{margin:12px 0 10px}
+.campus-welcome .welcome-back{margin:0 0 8px;color:#fff;font-size:clamp(21px,2vw,29px);font-weight:750}
+.campus-welcome .welcome-back span{color:#FFC928}
+.student-portal-top .portal-user-avatar{object-fit:cover;background:#fff}
+.student-recent-activity .activity-placeholder{gap:10px}
+.student-recent-activity .activity-placeholder>div{flex:1;min-width:0}
+.student-recent-activity .activity-placeholder time{margin-left:auto;color:#71839a;font-size:10px;white-space:nowrap}
+.student-sidebar-student-card{margin-top:auto}
+.student-sidebar-heading{flex:0 0 auto}
+@media(max-width:850px){
+ .login-header:before,.login-header:after{content:none;display:none}
+ .student-sidebar{min-height:100vh}
+ .student-sidebar-student-card{margin-top:auto}
+ body:not(.portal-active) .login-information{background-position:center}
+ body:not(.portal-active) .login-information h1{font-size:clamp(2.2rem,8vw,3rem)}
+}
+@media(max-width:560px){
+ .login-brand-lockup{gap:8px}
+ .login-brand-lockup img{width:40px;height:40px}
+ .login-brand-lockup strong{font-size:12px}
+ .login-brand-lockup small{font-size:9px}
+ .student-recent-activity .activity-placeholder{align-items:flex-start;flex-wrap:wrap}
+ .student-recent-activity .activity-placeholder time{margin-left:50px}
+}
+
+/* Full-screen campus composition for the existing login page. */
+body:not(.portal-active){
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+  background-color:#06264a!important;
+  background-image:linear-gradient(90deg,rgba(3,27,64,.91) 0%,rgba(4,34,73,.78) 34%,rgba(4,35,75,.18) 68%,rgba(4,35,75,.08) 100%),url('/assets/rcpet-imrd-college-gardens.png')!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  background-attachment:fixed!important;
+}
+body:not(.portal-active)>main{flex:1 0 auto}
+body:not(.portal-active)> .site-footer{
+  align-self:stretch;
+  width:100%;
+  margin: auto 0 0;
+  box-sizing:border-box;
+}
+body:not(.portal-active) .login-header{
+  position:relative;
+  z-index:20;
+  width:100%;
+  height:68px;
+  min-height:68px;
+  padding:0 clamp(16px,3vw,34px);
+  background:linear-gradient(100deg,#05265b,#0b4a91);
+  border-bottom:2px solid #e8bc35;
+}
+body:not(.portal-active) .login-header:before,
+body:not(.portal-active) .login-header:after{content:none;display:none}
+body:not(.portal-active) .login-brand-lockup{gap:12px}
+body:not(.portal-active) .login-brand-lockup img{width:48px;height:48px}
+body:not(.portal-active) .login-brand-lockup strong{font-size:15px}
+body:not(.portal-active) .login-brand-lockup small{font-size:11px}
+body:not(.portal-active) .login-header .profile-menu{position:relative;z-index:30}
+body:not(.portal-active) .login-header .profile-button{
+  min-width:136px;
+  padding:10px 18px;
+  color:#fff!important;
+  background:#082f6c!important;
+  border:1px solid #ffffff66!important;
+  border-radius:28px;
+  box-shadow:0 4px 14px #001b3b33;
+}
+body:not(.portal-active) .login-header .profile-dropdown{right:0;top:calc(100% + 10px)}
+body:not(.portal-active) .login-header+.wrap{
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:0;
+}
+body:not(.portal-active) .home-layout{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(350px,420px);
+  align-items:center;
+  gap:clamp(28px,6vw,88px);
+  width:100%;
+  max-width:none;
+  min-height:calc(100vh - 68px);
+  margin:0;
+  padding:clamp(30px,5vw,72px) clamp(24px,4.6vw,72px);
+}
+body:not(.portal-active) .login-information{
+  grid-column:1;
+  grid-row:1;
+  width:100%;
+  min-width:0;
+  min-height:0;
+  max-width:760px;
+  align-self:center;
+  padding:0;
+  overflow:visible;
+  isolation:auto;
+  color:#fff;
+  background:none!important;
+  border:0!important;
+  border-radius:0;
+  box-shadow:none!important;
+  animation:uiEnter .65s both;
+}
+body:not(.portal-active) .login-information:before,
+body:not(.portal-active) .login-information:after{
+  content:none;
+  display:none;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+body:not(.portal-active) .login-information>*{position:relative;z-index:1}
+body:not(.portal-active) .login-information .eyebrow{color:#ffd454}
+body:not(.portal-active) .login-information h1{
+  max-width:13ch;
+  margin:10px 0 14px;
+  color:#fff;
+  font-size:clamp(2.6rem,5vw,4.45rem);
+  line-height:1.02;
+  text-shadow:0 2px 12px #00152c55;
+}
+body:not(.portal-active) .login-information .animated-phrase{color:#ffc928}
+body:not(.portal-active) .login-information .gold-rule{
+  width:58px;
+  height:4px;
+  margin:0 0 16px;
+  background:#ffc928;
+}
+body:not(.portal-active) .login-information .login-tagline{
+  margin:0 0 12px;
+  color:#fff;
+  font-size:clamp(1.25rem,2vw,1.7rem);
+}
+body:not(.portal-active) .login-information .info-copy{
+  max-width:52ch;
+  margin-bottom:0;
+  color:#edf4ff;
+  font-size:clamp(.95rem,1.2vw,1.08rem);
+  line-height:1.62;
+}
+body:not(.portal-active) .feature-list{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin:24px 0 0;
+}
+body:not(.portal-active) .feature-item{
+  display:flex;
+  min-width:0;
+  min-height:134px;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+  gap:9px;
+  padding:12px;
+  color:#fff;
+  background:#06275466!important;
+  border:1px solid #ffffff42!important;
+  border-radius:13px;
+  backdrop-filter:blur(3px);
+}
+body:not(.portal-active) .feature-item:hover{background:#06275488;border-color:#ffffff70}
+body:not(.portal-active) .feature-item>span{
+  display:grid;
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  place-items:center;
+  color:#ffc928!important;
+  background:#0b4385!important;
+  border:1px solid #ffffff2b!important;
+  border-radius:10px;
+  font-size:20px;
+}
+body:not(.portal-active) .feature-item strong{color:#fff;font-size:.84rem;line-height:1.25}
+body:not(.portal-active) .feature-item small{color:#e2ecfa;font-size:.74rem;line-height:1.4}
+body:not(.portal-active) .feature-item strong,
+body:not(.portal-active) .feature-item small{display:block}
+body:not(.portal-active) .home-layout>#home{
+  grid-column:2;
+  grid-row:1;
+  justify-self:end;
+  align-self:center;
+  width:100%;
+  max-width:420px;
+  min-width:0;
+  margin:0;
+  padding:clamp(20px,1.6vw,22px);
+  overflow:visible;
+  background:rgba(255,255,255,.97)!important;
+  border:1px solid #ffffffb8!important;
+  border-top:4px solid #ffc928!important;
+  border-radius:22px!important;
+  box-shadow:0 20px 55px #031b3b50!important;
+  animation:uiEnter .72s .08s both;
+}
+body:not(.portal-active) .login-institution{gap:5px;margin:0 auto 12px}
+body:not(.portal-active) .login-institution img{
+  width:90px!important;
+  height:90px!important;
+  padding:6px;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+body:not(.portal-active) .login-institution strong{color:#082d5a;font-size:1.05rem}
+body:not(.portal-active) .login-institution small{color:#7486a2}
+body:not(.portal-active) #home>.eyebrow{color:#0876c8}
+body:not(.portal-active) #home>h1{
+  margin:10px 0;
+  color:#092a52;
+  font-size:clamp(1.9rem,2.8vw,2.45rem);
+  text-align:center;
+}
+body:not(.portal-active) #home>.muted{margin-bottom:14px;text-align:center}
+body:not(.portal-active) #studentLoginForm label{color:#102b50}
+body:not(.portal-active) #studentLoginForm{gap:7px;margin-top:8px}
+body:not(.portal-active) #studentLoginForm label{display:grid;gap:4px;margin:0}
+body:not(.portal-active) #studentLoginForm input{min-height:45px;padding:10px 12px;background:#f7faff!important}
+body:not(.portal-active) #studentLoginForm .primary{
+  min-height:48px;
+  margin-top:6px;
+  color:#fff;
+  background:linear-gradient(100deg,#0868d9,#1299ec)!important;
+  border-radius:11px;
+}
+body:not(.portal-active) .forgot-link{display:block;width:auto;justify-self:end;margin:0;padding:2px 0;text-align:right}
+body:not(.portal-active) .login-brand-footer{margin-top:11px;padding-top:10px;gap:16px}
+body:not(.portal-active) .login-brand-footer img{display:block;width:100px;height:72px;max-width:none;flex:0 0 100px;object-fit:contain}
+body:not(.portal-active) .login-brand-footer>div{min-width:0;text-align:left}
+@media(max-width:1100px) and (min-width:761px){
+  body:not(.portal-active) .home-layout{
+    grid-template-columns:minmax(0,1fr) minmax(320px,390px);
+    gap:clamp(20px,3vw,40px);
+    padding-right:clamp(22px,3vw,42px);
+    padding-left:clamp(22px,3vw,42px);
+  }
+  body:not(.portal-active) .login-information .info-copy{display:block!important}
+  body:not(.portal-active) .login-information h1{font-size:clamp(2.35rem,4.5vw,3.4rem)}
+  body:not(.portal-active) .feature-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));max-width:520px;margin-top:18px}
+  body:not(.portal-active) .feature-item{min-height:110px}
+  body:not(.portal-active) .home-layout>#home{max-width:390px;padding:24px}
+}
+@media(max-width:760px){
+  body:not(.portal-active){
+    background-image:linear-gradient(180deg,rgba(3,27,64,.82) 0%,rgba(4,34,73,.58) 45%,rgba(4,35,75,.28) 100%),url('/assets/rcpet-imrd-college-gardens.png')!important;
+    background-attachment:scroll!important;
+  }
+  body:not(.portal-active) .login-header{height:64px;min-height:64px;padding:0 16px}
+  body:not(.portal-active) .home-layout{
+    display:flex;
+    min-height:calc(100vh - 64px);
+    flex-direction:column;
+    align-items:stretch;
+    justify-content:flex-start;
+    gap:22px;
+    padding:30px clamp(16px,5vw,30px) 36px;
+  }
+  body:not(.portal-active) .login-information{order:1;max-width:620px;margin:0 auto}
+  body:not(.portal-active) .login-information .info-copy{display:block!important}
+  body:not(.portal-active) .login-information h1{font-size:clamp(2.15rem,8vw,3.2rem)}
+  body:not(.portal-active) .login-information .info-copy{font-size:.92rem;line-height:1.52}
+  body:not(.portal-active) .feature-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:17px}
+  body:not(.portal-active) .feature-item{min-height:100px;padding:10px}
+  body:not(.portal-active) .feature-item>span{width:34px;height:34px;flex-basis:34px;font-size:17px}
+  body:not(.portal-active) .home-layout>#home{order:2;align-self:center;width:100%;max-width:520px;padding:22px}
+}
+@media(max-width:420px){
+  body:not(.portal-active) .login-brand-footer{gap:12px}
+  body:not(.portal-active) .login-brand-footer img{width:clamp(64px,21vw,78px);height:auto;max-height:none;min-width:0;flex:0 1 clamp(64px,21vw,78px)}
+  body:not(.portal-active) .login-brand-footer>div{flex:1 1 auto;overflow-wrap:anywhere}
+  body:not(.portal-active) .login-brand-footer strong{font-size:14px}
+  body:not(.portal-active) .login-brand-footer small{font-size:10px}
+  body:not(.portal-active) .login-header{padding:0 12px}
+  body:not(.portal-active) .login-brand-lockup{gap:8px}
+  body:not(.portal-active) .login-brand-lockup img{width:40px;height:40px}
+  body:not(.portal-active) .login-brand-lockup strong{font-size:12px}
+  body:not(.portal-active) .login-brand-lockup small{font-size:9px}
+  body:not(.portal-active) .login-header .profile-button{min-width:105px;padding:8px 11px;font-size:.82rem}
+  body:not(.portal-active) .home-layout{gap:17px;padding-right:14px;padding-left:14px}
+  body:not(.portal-active) .login-information h1{font-size:2.1rem}
+  body:not(.portal-active) .feature-item{min-height:108px;padding:9px}
+  body:not(.portal-active) .feature-item strong{font-size:.78rem}
+  body:not(.portal-active) .feature-item small{font-size:.69rem}
+  body:not(.portal-active) .home-layout>#home{padding:20px 18px}
+}
+@media(prefers-reduced-motion:reduce){
+  body:not(.portal-active) .login-information,
+  body:not(.portal-active) .home-layout>#home{animation:none}
+}
+
+#passwordReset{max-width:520px;margin:28px auto;padding:clamp(24px,5vw,42px);border-top:4px solid var(--rcpet-gold);border-radius:20px;box-shadow:0 20px 60px #082d5b22}
+#passwordReset>h2{margin:8px 0;color:#092a52;font-size:clamp(1.7rem,4vw,2.1rem)}
+#passwordReset>.muted{margin:0 0 22px;line-height:1.55}
+.recovery-step{animation:recovery-appear .22s ease-out}
+.recovery-step label{display:block;margin:14px 0 7px;font-weight:750;color:#102b50}
+.recovery-step input:not([type=checkbox]),.recovery-step select{width:100%;min-height:50px;box-sizing:border-box;padding:12px 14px;border:1px solid #d6e1ef;border-radius:11px;background:#f7faff;color:#14243a;font:inherit}
+.recovery-step input:focus,.recovery-step select:focus{outline:3px solid #0878f933;border-color:#0878f9}
+.recovery-submit{width:100%;min-height:50px;margin-top:12px;border-radius:11px;background:linear-gradient(100deg,#0868d9,#1299ec);font-weight:800}
+.recovery-submit:disabled,.recovery-resend button:disabled{opacity:.62;cursor:not-allowed}
+.recovery-submit[aria-busy=true]{position:relative;color:transparent}
+.recovery-submit[aria-busy=true]:after{content:"";position:absolute;left:calc(50% - 9px);top:calc(50% - 9px);width:18px;height:18px;border:2px solid #fff9;border-top-color:#fff;border-radius:50%;animation:recovery-spin .7s linear infinite}
+.recovery-message{min-height:1.4em;margin:10px 0 0;color:#405976;font-size:.9rem}
+.recovery-service-message{margin:10px 0;color:#a52c2c;font-size:.9rem}
+.otp-inputs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;margin:22px 0 12px}
+.otp-digit{min-width:0!important;height:56px;min-height:56px!important;padding:0!important;text-align:center;font-size:1.45rem!important;font-weight:800;letter-spacing:.02em}
+.recovery-resend{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;padding-top:14px;border-top:1px solid #e3eaf3;color:#52647a;font-size:.86rem}
+.recovery-resend button{flex:0 0 auto;padding:8px 0;color:#075ccB;font-weight:750}
+.password-strength{margin:6px 0 14px}
+.password-strength-track{height:5px;overflow:hidden;border-radius:999px;background:#e7edf5}
+.password-strength-track span{display:block;width:0;height:100%;border-radius:inherit;background:#d23a3a;transition:width .2s ease,background-color .2s ease}
+.password-strength-track span[data-strength=fair]{background:#dc8b22}
+.password-strength-track span[data-strength=good]{background:#0b8b68}
+.password-strength-track span[data-strength=strong]{background:#0878c9}
+.password-strength small{display:block;margin-top:5px;color:#62748e}
+.show-password-option{display:flex!important;align-items:center;gap:8px;font-weight:600!important}
+.show-password-option input{width:17px;height:17px;accent-color:#075ccB}
+.recovery-success-mark{display:grid;width:54px;height:54px;place-items:center;margin:10px auto 16px;border-radius:50%;background:#e8f6ef;color:#168054;font-size:1.8rem;font-weight:800}
+#resetStepSuccess{text-align:center}
+#resetStepSuccess h3{margin:0;color:#092a52;font-size:1.35rem}
+#resetBack{margin-top:14px}
+@keyframes recovery-spin{to{transform:rotate(360deg)}}
+@keyframes recovery-appear{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:560px){
+  #passwordReset{margin:14px auto;padding:24px 18px;border-radius:16px}
+  .otp-inputs{gap:6px}
+  .otp-digit{height:50px;min-height:50px!important;font-size:1.25rem!important}
+  .recovery-resend{align-items:flex-start;flex-direction:column;gap:4px}
+}
+@media(prefers-reduced-motion:reduce){
+  .recovery-step{animation:none}
+  .recovery-submit[aria-busy=true]:after{animation-duration:1.4s}
+}
+
+#admin .admin-action-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:20px 0 24px}
+#admin .admin-action-group{min-width:0;padding:16px;border:1px solid #dce5f0;border-top:3px solid var(--rcpet-gold);border-radius:14px;background:#fff;box-shadow:0 6px 20px #082d5b0d}
+#admin .admin-action-group h3{margin:0 0 13px;color:var(--rcpet-navy);font-size:1rem;font-weight:800}
+#admin .admin-action-group .admin-tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:9px}
+#admin .admin-action-group .admin-tabs button,
+#admin #xlsxExport{min-width:0;min-height:44px;padding:10px 12px;border:1px solid #0868d9!important;border-radius:9px;background:#0868d9!important;color:#fff!important;font:inherit;font-size:.88rem;font-weight:700;line-height:1.25;text-align:center;cursor:pointer;transition:background-color .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease,transform .24s ease}
+#admin .admin-action-group .admin-tabs button:hover,
+#admin #xlsxExport:hover{border-color:#0878f9!important;background:#fff!important;color:#075ccB!important;box-shadow:0 5px 14px #075ccB29;transform:translateY(-1px)}
+#admin .admin-action-group .admin-tabs button.is-active{border-color:var(--rcpet-gold)!important;background:var(--rcpet-navy)!important;color:#fff!important;box-shadow:0 0 0 2px #ffc92842}
+#admin .admin-action-group .admin-tabs button:focus-visible,
+#admin #xlsxExport:focus-visible{outline:3px solid #ffc928;outline-offset:2px}
+#adminContent .table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain}
+#adminContent .admin-table{min-width:860px;width:100%;border-collapse:collapse}
+#adminContent .admin-table th,#adminContent .admin-table td{padding:11px 12px;vertical-align:middle}
+#adminContent .admin-table th{white-space:nowrap}
+#adminContent .admin-table td:last-child{white-space:nowrap}
+#adminContent .admin-table td button{min-height:34px;margin:2px;padding:7px 10px}
+@media(max-width:980px){
+  #admin .admin-action-groups{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+  #admin .admin-action-groups{grid-template-columns:minmax(0,1fr);gap:12px}
+  #admin .admin-action-group{padding:14px}
+  #admin .admin-action-group .admin-tabs{grid-template-columns:minmax(0,1fr)}
+  #admin .admin-action-group .admin-tabs button,#admin #xlsxExport{width:100%;min-height:46px}
+  #adminContent .admin-table{min-width:820px}
+}

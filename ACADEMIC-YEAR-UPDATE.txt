@@ -1,0 +1,16 @@
+Academic Excellence Portal update
+
+Included:
+- Student class/year dropdown: FY, SY, TY
+- Student division dropdown: A, B, C, D
+- Assessment list filtered by selected year
+- Admin can create assessments assigned to FY, SY, TY, or all years
+- Admin can change an existing assessment's assigned year in Assessment settings
+- Server-side validation prevents students selecting assessments assigned to another year
+- SQLite migration adds academic_year to existing databases on startup
+- ZERO TECHNOLOGIES header logo sizing uses contain and a balanced responsive width to avoid cropping
+
+Important:
+Existing assessments are migrated as ALL for backwards compatibility. Sign in to Admin > Assessment settings and set each existing assessment's Assigned year (FY/SY/TY) so only the intended students see it. Newly created assessments should be assigned to the intended year when created.
+
+After creating an assessment, use Admin > Questions to add its questions. Certificate template selection/design remains managed separately as before.
