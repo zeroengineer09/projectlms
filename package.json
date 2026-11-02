@@ -6,11 +6,11 @@
   "main": "backend/app.js",
   "scripts": {
     "start": "node backend/app.js",
-    "init-db": "node backend/seed.js",
-    "create-admin": "node backend/createAdmin.js",
-    "initialize-accounts": "node backend/initializeAccounts.js",
-    "import-students": "node backend/importStudents.js",
-    "import-teachers": "node backend/importTeachers.js",
+    "init-db": "node backend/scripts/seed.js",
+    "create-admin": "node backend/scripts/createAdmin.js",
+    "initialize-accounts": "node backend/scripts/initializeAccounts.js",
+    "import-students": "node backend/scripts/importStudents.js",
+    "import-teachers": "node backend/scripts/importTeachers.js",
     "test": "node --test tests/*.test.js"
   },
   "dependencies": {

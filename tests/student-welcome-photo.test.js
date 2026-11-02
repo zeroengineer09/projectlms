@@ -7,8 +7,8 @@ const root = path.join(__dirname, '..');
 
 test('student welcome banner has no photo while profile photo support remains', () => {
   const html = fs.readFileSync(path.join(root, 'frontend', 'index.html'), 'utf8');
-  const js = fs.readFileSync(path.join(root, 'frontend', 'js', 'app.js'), 'utf8');
-  const css = fs.readFileSync(path.join(root, 'frontend', 'css', 'style.css'), 'utf8');
+  const js = fs.readFileSync(path.join(root, 'frontend', 'scripts', 'app.js'), 'utf8');
+  const css = fs.readFileSync(path.join(root, 'frontend', 'styles', 'style.css'), 'utf8');
   const dashboard = html.match(/<div id="studentViewDashboard"[^>]*>([\s\S]*?)<\/div>\s*<div id="studentViewAssessments"/);
 
   assert.ok(dashboard, 'student dashboard markup should exist');

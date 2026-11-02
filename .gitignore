@@ -5,6 +5,8 @@ node_modules/
 .DS_Store
 database/*.db
 database/*.sqlite
+backend/database/*.db
+backend/database/*.sqlite
 tests/database/*.db
 tests/database/*.sqlite
 INITIAL-ACCOUNT-SETUP.txt

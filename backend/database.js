@@ -1,9 +1,0 @@
-const fs=require('fs'); const path=require('path'); const sqlite3=require('sqlite3').verbose();
-const file=path.resolve(process.env.DATABASE_FILE||'./database/certified-developer-test.db'); fs.mkdirSync(path.dirname(file),{recursive:true});
-const db=new sqlite3.Database(file); db.configure('busyTimeout',5000); db.serialize(()=>db.run('PRAGMA foreign_keys=ON'));
-function run(sql,params=[]){return new Promise((resolve,reject)=>db.run(sql,params,function(e){e?reject(e):resolve({lastID:this.lastID,changes:this.changes})}))}
-function get(sql,params=[]){return new Promise((resolve,reject)=>db.get(sql,params,(e,row)=>e?reject(e):resolve(row)))}
-function all(sql,params=[]){return new Promise((resolve,reject)=>db.all(sql,params,(e,rows)=>e?reject(e):resolve(rows)))}
-function exec(sql){return new Promise((resolve,reject)=>db.exec(sql,e=>e?reject(e):resolve()))}
-function transaction(work){return new Promise((resolve,reject)=>{const connection=new sqlite3.Database(file);connection.configure('busyTimeout',5000);const txRun=(sql,params=[])=>new Promise((done,fail)=>connection.run(sql,params,function(error){error?fail(error):done({lastID:this.lastID,changes:this.changes})}));const txGet=(sql,params=[])=>new Promise((done,fail)=>connection.get(sql,params,(error,row)=>error?fail(error):done(row)));connection.serialize(()=>{connection.run('PRAGMA foreign_keys=ON');connection.run('BEGIN IMMEDIATE',async beginError=>{if(beginError){connection.close(()=>reject(beginError));return}try{const result=await work({run:txRun,get:txGet});connection.run('COMMIT',commitError=>{if(commitError){connection.run('ROLLBACK',()=>connection.close(()=>reject(commitError)));return}connection.close(closeError=>closeError?reject(closeError):resolve(result))})}catch(error){connection.run('ROLLBACK',()=>connection.close(()=>reject(error)))}})})})}
-module.exports={db,run,get,all,exec,transaction,file};

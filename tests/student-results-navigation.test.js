@@ -7,8 +7,8 @@ const root = path.join(__dirname, '..');
 
 test('student results navigation has one collapsible parent and exactly three result views', () => {
   const html = fs.readFileSync(path.join(root, 'frontend', 'index.html'), 'utf8');
-  const app = fs.readFileSync(path.join(root, 'frontend', 'js', 'app.js'), 'utf8');
-  const css = fs.readFileSync(path.join(root, 'frontend', 'css', 'style.css'), 'utf8');
+  const app = fs.readFileSync(path.join(root, 'frontend', 'scripts', 'app.js'), 'utf8');
+  const css = fs.readFileSync(path.join(root, 'frontend', 'styles', 'style.css'), 'utf8');
   const menuStart = html.indexOf('<div id="studentResultsSubmenu"');
   const menuEnd = html.indexOf('<button class="student-nav" data-student-view="teachers"', menuStart);
 

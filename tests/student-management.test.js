@@ -18,9 +18,9 @@ test('CSV student import preserves existing credentials and supports private stu
 
   const script = `
     const bcrypt=require(${JSON.stringify(path.join(root,'node_modules','bcryptjs'))});
-    const {ensureSchema}=require(${JSON.stringify(path.join(root,'backend','migrations.js'))});
-    const {get,run,db}=require(${JSON.stringify(path.join(root,'backend','database.js'))});
-    const {importStudents}=require(${JSON.stringify(path.join(root,'backend','importStudents.js'))});
+    const {ensureSchema}=require(${JSON.stringify(path.join(root,'backend','database','migrations.js'))});
+    const {get,run,db}=require(${JSON.stringify(path.join(root,'backend','database'))});
+    const {importStudents}=require(${JSON.stringify(path.join(root,'backend','scripts','importStudents.js'))});
     const request=require(${JSON.stringify(path.join(root,'node_modules','supertest'))});
     (async()=>{
       await ensureSchema();

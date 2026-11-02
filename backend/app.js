@@ -1,5 +1,5 @@
 
-require('dotenv').config({ path: ['.env.local', '.env'] });
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 
 const express = require('express');
 const path = require('path');
@@ -7,7 +7,7 @@ const session = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);
 const helmet = require('helmet');
 const { exec } = require('./database');
-const { ensureSchema } = require('./migrations');
+const { ensureSchema } = require('./database/migrations');
 
 const app = express();
 const isProd = process.env.NODE_ENV === 'production';
@@ -43,7 +43,7 @@ app.use(session({
   saveUninitialized: false,
   store: new SQLiteStore({
     db: 'sessions.sqlite',
-    dir: path.resolve('./database')
+    dir: path.join(__dirname, 'database')
   }),
   cookie: {
     httpOnly: true,
@@ -64,16 +64,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/auth', require('./auth'));
-app.use('/api/teachers', require('./teacherAuth'));
-app.use('/api/students', require('./studentAuth'));
-app.use('/api/password-reset', require('./passwordReset'));
-app.use('/api/teacher-dashboard', require('./teacherDashboardRoutes'));
-app.use('/api/marks', require('./marksRoutes'));
-app.use('/api/exam', require('./examRoutes'));
-app.use('/api/assessment-results', require('./assessmentResultsRoutes'));
-app.use('/api/admin/students', require('./adminStudentRoutes'));
-app.use('/api/admin', require('./adminRoutes'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/teachers', require('./routes/teacherAuth'));
+app.use('/api/students', require('./routes/studentAuth'));
+app.use('/api/password-reset', require('./routes/passwordReset'));
+app.use('/api/teacher-dashboard', require('./routes/teacherDashboardRoutes'));
+app.use('/api/marks', require('./routes/marksRoutes'));
+app.use('/api/exam', require('./routes/examRoutes'));
+app.use('/api/assessment-results', require('./routes/assessmentResultsRoutes'));
+app.use('/api/admin/students', require('./routes/adminStudentRoutes'));
+app.use('/api/admin', require('./routes/adminRoutes'));
 
 app.use(express.static(path.join(__dirname, '../frontend')));
 

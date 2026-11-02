@@ -7,18 +7,16 @@ Powered by ZERO TECHNOLOGIES.
 ## Project structure and local startup
 
 - `frontend/` contains the browser application and static assets.
-- `backend/` contains the Express application, API routes, and account/database scripts.
-- `database/` contains the SQLite database and schema.
+- `backend/routes/` contains API endpoints; `backend/services/` contains shared business logic.
+- `backend/database/` contains the database adapter, migrations, schema, and local SQLite files.
+- `backend/scripts/` contains database initialization, account setup, and roster import commands.
+- `frontend/components/`, `frontend/scripts/`, and `frontend/styles/` contain UI features, the app entry script, and CSS.
 
 Run commands from the repository root. Install dependencies with `npm install`, then start the site with `npm start`; the backend serves the frontend on port 3000 by default.
 
-## Deploying the frontend on Vercel
-
-Set the Vercel project root directory to `frontend/`. The `frontend/vercel.json` rewrite proxies `/api/*` requests to the Render backend at `https://project-aep.onrender.com`, so browser API calls and session cookies stay on the frontend's origin. Deploy the backend separately on Render and make sure its service remains available at that URL.
-
 ## Account restoration and roster import
 
-Copy `.env.example` to `.env.local` for local development and configure secrets there, or use your deployment secret store. `.env.local` is ignored by Git. Never commit credentials or put initial passwords in source code. `OWNER_INITIAL_PASSWORD`, `STUDENT_INITIAL_PASSWORD`, and `TEACHER_INITIAL_PASSWORD` are read only by explicit account setup/import commands; application startup does not seed or reset user passwords.
+Configure local secrets in the root `.env` file or use your deployment secret store. `.env` is ignored by Git. Never commit credentials or put initial passwords in source code. `OWNER_INITIAL_PASSWORD`, `STUDENT_INITIAL_PASSWORD`, and `TEACHER_INITIAL_PASSWORD` are read only by explicit account setup/import commands; application startup does not seed or reset user passwords.
 
 The owner initializer is create-only:
 

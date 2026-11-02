@@ -19,8 +19,8 @@ test('teachers can edit and soft-delete only their marks; published records and 
     const assert=require('node:assert/strict');
     const bcrypt=require(${JSON.stringify(path.join(root,'node_modules','bcryptjs'))});
     const request=require(${JSON.stringify(path.join(root,'node_modules','supertest'))});
-    const {ensureSchema}=require(${JSON.stringify(path.join(root,'backend','migrations.js'))});
-    const {run,all}=require(${JSON.stringify(path.join(root,'backend','database.js'))});
+    const {ensureSchema}=require(${JSON.stringify(path.join(root,'backend','database','migrations.js'))});
+    const {run,all}=require(${JSON.stringify(path.join(root,'backend','database'))});
     const app=require(${JSON.stringify(path.join(root,'backend','app.js'))});
     (async()=>{
       await ensureSchema();

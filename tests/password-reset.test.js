@@ -15,9 +15,9 @@ test('password recovery supports all roles, expiry, attempt limits, cooldown and
     const session=require(${JSON.stringify(path.join(root,'node_modules','express-session'))});
     const request=require(${JSON.stringify(path.join(root,'node_modules','supertest'))});
     const bcrypt=require(${JSON.stringify(path.join(root,'node_modules','bcryptjs'))});
-    const {ensureSchema}=require(${JSON.stringify(path.join(root,'backend','migrations.js'))});
-    const database=require(${JSON.stringify(path.join(root,'backend','database.js'))});
-    const createPasswordResetRouter=require(${JSON.stringify(path.join(root,'backend','passwordReset.js'))}).createPasswordResetRouter;
+    const {ensureSchema}=require(${JSON.stringify(path.join(root,'backend','database','migrations.js'))});
+    const database=require(${JSON.stringify(path.join(root,'backend','database'))});
+    const createPasswordResetRouter=require(${JSON.stringify(path.join(root,'backend','routes','passwordReset.js'))}).createPasswordResetRouter;
     const noopLimiter=(req,res,next)=>next();
     const sent=[];
     let failDelivery=false;
@@ -31,9 +31,9 @@ test('password recovery supports all roles, expiry, attempt limits, cooldown and
     app.use('/api/password-reset',createPasswordResetRouter({
       ...database,transportFactory,rateLimitMiddleware:noopLimiter,verificationRateLimitMiddleware:noopLimiter
     }));
-    app.use('/api/auth',require(${JSON.stringify(path.join(root,'backend','auth.js'))}));
-    app.use('/api/students',require(${JSON.stringify(path.join(root,'backend','studentAuth.js'))}));
-    app.use('/api/teachers',require(${JSON.stringify(path.join(root,'backend','teacherAuth.js'))}));
+    app.use('/api/auth',require(${JSON.stringify(path.join(root,'backend','routes','auth.js'))}));
+    app.use('/api/students',require(${JSON.stringify(path.join(root,'backend','routes','studentAuth.js'))}));
+    app.use('/api/teachers',require(${JSON.stringify(path.join(root,'backend','routes','teacherAuth.js'))}));
 
     const codeFromMail=message=>message.html.match(/font-size:32px[^>]*>(\\d{6})</)?.[1];
     const post=(path,payload)=>request(app).post(path).send(payload);
@@ -134,7 +134,7 @@ test('password recovery supports all roles, expiry, attempt limits, cooldown and
       assert.ok(failedOtp.used_at);
       assert.equal((await verify('teacher','smtp-failure@test.example',codeFor('smtp-failure@test.example'))).status,400);
 
-      const emailTemplate=require(${JSON.stringify(path.join(root,'backend','passwordReset.js'))}).passwordResetEmail('A <Student>','123456');
+      const emailTemplate=require(${JSON.stringify(path.join(root,'backend','routes','passwordReset.js'))}).passwordResetEmail('A <Student>','123456');
       assert.match(emailTemplate.html,/RCPET IMRD/);
       assert.match(emailTemplate.html,/expires in 5 minutes/);
       assert.match(emailTemplate.html,/Powered by ZERO TECHNOLOGIES/);
@@ -171,7 +171,7 @@ test('password recovery supports all roles, expiry, attempt limits, cooldown and
 
 test('password recovery UI locks role to login context and validates reset controls', () => {
   const html = fs.readFileSync(path.join(root, 'frontend', 'index.html'), 'utf8');
-  const script = fs.readFileSync(path.join(root, 'frontend', 'js', 'password-reset.js'), 'utf8');
+  const script = fs.readFileSync(path.join(root, 'frontend', 'components', 'password-reset.js'), 'utf8');
   assert.match(html, /id="adminForgotOpen"/);
   assert.doesNotMatch(html, /id="resetRole"|Account type/);
   assert.match(html, /Registered Email Address/);
