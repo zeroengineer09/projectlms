@@ -64,6 +64,14 @@ test('Express serves frontend files from the frontend folder', async () => {
   assert.match(script.text, /loginHeader/);
 });
 
+test('Vercel proxies frontend API requests to the Render backend', () => {
+  const config = JSON.parse(fs.readFileSync(path.join(root, 'frontend/vercel.json'), 'utf8'));
+  assert.deepEqual(config.rewrites, [{
+    source: '/api/:path*',
+    destination: 'https://project-aep.onrender.com/api/:path*'
+  }]);
+});
+
 test('ZERO TECHNOLOGIES branding and certificate assets are available', () => {
   const html = fs.readFileSync(path.join(root, 'frontend/index.html'), 'utf8');
   assert.ok(html.includes('/assets/zero-technologies-logo-cropped.png'));
